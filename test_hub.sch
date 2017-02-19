@@ -3026,4 +3026,8 @@ Connection ~ 1200 1100
 Wire Wire Line
 	1650 1100 1850 1100
 Connection ~ 1850 1100
+Text Label 9100 4150 2    60   ~ 0
+ST_USB_N
+Text Label 9100 4250 2    60   ~ 0
+ST_USB_P
 $EndSCHEMATC
