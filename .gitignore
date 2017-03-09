@@ -22,3 +22,8 @@ _autosave-*
 *.xml
 
 docs/
+
+# Firmware
+build/
+*.a
+*.o
