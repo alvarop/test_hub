@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include "fifo.h"
+#include "board.h"
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
 
@@ -23,12 +25,14 @@ static char* argv[255];
 static void helpFn(uint8_t argc, char *argv[]);
 static void snCmd(uint8_t argc, char *argv[]);
 static void versionCmd(uint8_t argc, char *argv[]);
+static void portCmd(uint8_t argc, char *argv[]);
 
 static const char versionStr[] = FW_VERSION;
 
 static command_t commands[] = {
 	{"sn", snCmd, "sn"},
 	{"version", versionCmd, "version"},
+	{"port", portCmd, "port <1-3> <0|1> - Enable/disable port"},
 	// Add new commands here!
 	{"help", helpFn, "Print this!"},
 	{NULL, NULL, NULL}
@@ -68,6 +72,47 @@ static void snCmd(uint8_t argc, char *argv[]) {
 
 static void versionCmd(uint8_t argc, char *argv[]) {
 	printf("OK %s\n", versionStr);
+}
+
+static void portCmd(uint8_t argc, char *argv[]) {
+	if (argc == 3) {
+		bool enable = !(argv[2][0] == '0');
+		switch(argv[1][0]) {
+			case '1': {
+				if (enable) {
+					GPIO_SetBits(_5V_EN1_PORT, (1 << _5V_EN1_PIN));
+				} else {
+					GPIO_ResetBits(_5V_EN1_PORT, (1 << _5V_EN1_PIN));
+				}
+				printf("OK\n");
+				break;
+			}
+			case '2': {
+				if (enable) {
+					GPIO_SetBits(_5V_EN2_PORT, (1 << _5V_EN2_PIN));
+				} else {
+					GPIO_ResetBits(_5V_EN2_PORT, (1 << _5V_EN2_PIN));
+				}
+				printf("OK\n");
+				break;
+			}
+			case '3': {
+				if (enable) {
+					GPIO_SetBits(_5V_EN3_PORT, (1 << _5V_EN3_PIN));
+				} else {
+					GPIO_ResetBits(_5V_EN3_PORT, (1 << _5V_EN3_PIN));
+				}
+				printf("OK\n");
+				break;
+			}
+			default: {
+				printf("ERR\n");
+			}
+		}
+	} else {
+		printf("ERR\n");
+	}
+
 }
 
 void consoleProcess() {

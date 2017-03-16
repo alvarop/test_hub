@@ -107,6 +107,15 @@ void init() {
 	GPIO_Init(_LED1_PORT, &(GPIO_InitTypeDef){(1 << _LED1_PIN), GPIO_Mode_OUT, GPIO_Speed_2MHz, GPIO_OType_PP, GPIO_PuPd_NOPULL});
 	GPIO_Init(_LED2_PORT, &(GPIO_InitTypeDef){(1 << _LED2_PIN), GPIO_Mode_OUT, GPIO_Speed_2MHz, GPIO_OType_PP, GPIO_PuPd_NOPULL});
 
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
+	GPIO_Init(_5V_EN1_PORT, &(GPIO_InitTypeDef){(1 << _5V_EN1_PIN), GPIO_Mode_OUT, GPIO_Speed_2MHz, GPIO_OType_PP, GPIO_PuPd_NOPULL});
+	GPIO_Init(_5V_EN2_PORT, &(GPIO_InitTypeDef){(1 << _5V_EN2_PIN), GPIO_Mode_OUT, GPIO_Speed_2MHz, GPIO_OType_PP, GPIO_PuPd_NOPULL});
+	GPIO_Init(_5V_EN3_PORT, &(GPIO_InitTypeDef){(1 << _5V_EN3_PIN), GPIO_Mode_OUT, GPIO_Speed_2MHz, GPIO_OType_PP, GPIO_PuPd_NOPULL});
+
+	GPIO_ResetBits(_5V_EN1_PORT, (1 << _5V_EN1_PIN));
+	GPIO_ResetBits(_5V_EN2_PORT, (1 << _5V_EN2_PIN));
+	GPIO_ResetBits(_5V_EN3_PORT, (1 << _5V_EN3_PIN));
+
 	init_uart();
 
 	GPIO_ResetBits(_LED0_PORT, (1 << _LED0_PIN));
