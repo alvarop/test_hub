@@ -27,7 +27,7 @@ NetIExt=net
 version=1
 [eeschema]
 version=1
-LibDir=../ostur/hw
+LibDir=../../ostur/hw
 [eeschema/libraries]
 LibName1=test_hub-rescue
 LibName2=power
