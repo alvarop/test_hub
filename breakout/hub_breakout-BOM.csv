@@ -1,0 +1,38 @@
+Title,
+Revision,
+Date,
+Generated,Mon 27 Mar 2017 06:29:56 PM PDT
+Company,
+Comment 1,
+Comment 2,
+Comment 3,
+Comment 4,
+Total Parts,48
+Total Unique Parts,17
+
+
+
+Ref,Qty,Value,Footprint,MPN,
+C3 C7 C4 C20 C21 ,5,1uF,Capacitors_SMD:C_0603,GRM188R61C105KA93D
+C1 C2 ,2,18pF,Capacitors_SMD:C_0603,CL10C180JB8NNNC
+C8 C9 C12 C13 C14 C15 C11 C5 C6 C17 C16 ,11,0.1uF,Capacitors_SMD:C_0603,CC0603ZRY5V9BB104
+C10 ,1,4.7uF,Capacitors_SMD:C_0603,CL10B475KQ8NQNC
+C19 C18 ,2,100uF,Capacitors_SMD:CP_Elec_6.3x5.7,UWR1A101MCL1GB
+FB2 FB1 FB5 FB6 FB3 FB4 ,6,Ferrite,Resistors_SMD:R_0603,BLM18EG221SN1D
+J1 ,1,USB_OTG,alvarop:USB_MICRO_B,10118193-0001LF
+J2 J3 ,2,CONN_01X10,Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm, 
+J8 J9 ,2,USB_A,footprints:292303-1,292303-1
+J6 J7 J4 J5 ,4,CONN_01X02,Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm, 
+R1 ,1,1M,Resistors_SMD:R_0603,ERJ-3GEYJ105V
+R4 ,1,12k,Resistors_SMD:R_0603,ERJ-3EKF1202V
+R2 R3 ,2,100k,Resistors_SMD:R_0603,ERJ-3GEYJ104V
+R7 R6 R5 R9 R8 ,5,10k,Resistors_SMD:R_0603,RC0603FR-0710KL
+U2 ,1,USB2514B,footprints:SQFN36,USB2514B/M2
+U1 ,1,MIC550X,footprints:SOT-23(M5),MIC5504-3.3YM5-TR
+Y1 ,1,24MHz,footprints:HCM49,HCM4924000000ABJT
+
+
+
+
+BOM made with KICAD_BOM_WIZARD (https://github.com/HashDefineElectronics/KiCad_BOM_Wizard.git)
+Generated Mon 27 Mar 2017 06:29:56 PM PDT
