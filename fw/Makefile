@@ -4,7 +4,10 @@
 SRCS = 		main.c \
 			fifo.c \
 			console.c \
-			i2c.c
+			i2c.c \
+			usb2514b.c \
+			usb2514b_config.c \
+			uart.c \
 
 # System sources
 SRCS += 	system_stm32f0xx.c \
@@ -42,7 +45,7 @@ CPU = -mcpu=cortex-m0 -mthumb
 
 VERSION = $(shell git describe --dirty | sed 's/releases\///')
 
-CFLAGS  = $(CPU) -c -std=gnu99 -g -O2 -Wall
+CFLAGS  = $(CPU) -c -std=gnu99 -g -O2 -Wall -Werror
 LDFLAGS  = $(CPU) -mlittle-endian -mthumb-interwork -nostartfiles -Wl,--gc-sections,-Map=$(OUTPATH)/$(PROJ_NAME).map,--cref --specs=nano.specs
 
 CFLAGS += -msoft-float
