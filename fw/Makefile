@@ -3,7 +3,8 @@
 # Main sources
 SRCS = 		main.c \
 			fifo.c \
-			console.c
+			console.c \
+			i2c.c
 
 # System sources
 SRCS += 	system_stm32f0xx.c \
