@@ -743,15 +743,15 @@ F 4 "RC0603FR-0710KL" V 1000 2250 60  0001 C CNN "MPN"
 $EndComp
 Text Label 1700 2750 0    60   ~ 0
 CFG_SEL1
-Text Label 11750 3550 0    60   ~ 0
+Text Label 9000 3350 2    60   ~ 0
 HUB_RST_N
-Text Label 9000 3050 2    60   ~ 0
+Text Label 9000 3250 2    60   ~ 0
 VBUS_DET
-Text Label 11750 3350 0    60   ~ 0
+Text Label 9000 3450 2    60   ~ 0
 CFG_SEL1
 Text Label 2650 5000 2    60   ~ 0
 SUSP_IND
-Text Label 11750 3450 0    60   ~ 0
+Text Label 9000 3150 2    60   ~ 0
 SUSP_IND
 Text Label 11750 4150 0    60   ~ 0
 PRTPWR1
@@ -1291,9 +1291,9 @@ F 4 "CIS10P221NC" H 14450 3200 60  0001 C CNN "MPN"
 $EndComp
 Text Label 11750 3850 0    60   ~ 0
 5V_EN1
-Text Label 11750 3750 0    60   ~ 0
-5V_EN2
 Text Label 11750 3650 0    60   ~ 0
+5V_EN2
+Text Label 8950 3850 2    60   ~ 0
 5V_EN3
 $Comp
 L Ferrite_Bead-RESCUE-test_hub FB2
@@ -1402,7 +1402,7 @@ F 3 "" H 3750 9150 50  0000 C CNN
 $EndComp
 Text Label 3400 8500 2    60   ~ 0
 5V_OUT
-Text Label 9000 3150 2    60   ~ 0
+Text Label 9000 3050 2    60   ~ 0
 VBUS_EXT_DET
 $Comp
 L R_Small R13
@@ -1527,11 +1527,11 @@ F 4 "STM32F072RBT6" H 9100 2750 60  0001 C CNN "MPN"
 	1    9100 2750
 	1    0    0    -1  
 $EndComp
-Text Label 8950 3850 2    60   ~ 0
+Text Label 11750 3750 0    60   ~ 0
 5V_FLG1
-Text Label 8950 3950 2    60   ~ 0
+Text Label 11750 3550 0    60   ~ 0
 5V_FLG2
-Text Label 8950 4050 2    60   ~ 0
+Text Label 8950 3950 2    60   ~ 0
 5V_FLG3
 $Comp
 L MIC550X U2
@@ -1707,9 +1707,9 @@ Text Label 9100 4150 2    60   ~ 0
 ST_USB_N
 Text Label 9100 4250 2    60   ~ 0
 ST_USB_P
-NoConn ~ 9000 3250
-NoConn ~ 9000 3350
-NoConn ~ 9000 3450
+NoConn ~ 11750 3350
+NoConn ~ 11750 3450
+NoConn ~ 8950 4050
 $Comp
 L Ferrite_Bead-RESCUE-test_hub FB3
 U 1 1 59174BFE
