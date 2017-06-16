@@ -46,14 +46,14 @@ int main(void) {
 
 	uart_init();
 
-	i2cSetup(100000);
-
-	usb2514b_init();
-
 	USBD_Init(&USB_Device_dev,
 			&USR_desc,
 			&USBD_CDC_cb,
 			&USR_cb);
+
+	i2cSetup(100000);
+
+	usb2514b_init();
 
 	nextBlink = tickMs + BLINK_DELAY_MS;
 	for(;;) {

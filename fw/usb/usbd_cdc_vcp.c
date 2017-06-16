@@ -29,6 +29,9 @@
 #include "usbd_cdc_vcp.h"
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
+#include "fifo.h"
+#include <stdio.h>
+#include <stdbool.h>
 
 /* These are external variables imported from CDC core to be used for IN
    transfer management. */
@@ -39,11 +42,13 @@ extern uint32_t APP_Rx_ptr_in;    /* Increment this pointer or roll it back to
                                      start address when writing received data
                                      in the buffer APP_Rx_Buffer. */
 
+extern fifo_t rxFifo;
+
 /* Private function prototypes -----------------------------------------------*/
 static uint16_t VCP_Init     (void);
 static uint16_t VCP_DeInit   (void);
 static uint16_t VCP_Ctrl     (uint32_t Cmd, uint8_t* Buf, uint32_t Len);
-static uint16_t VCP_DataTx   (uint8_t* Buf, uint32_t Len);
+uint16_t VCP_DataTx   (uint8_t* Buf, uint32_t Len);
 static uint16_t VCP_DataRx   (uint8_t* Buf, uint32_t Len);
 
 // static uint16_t VCP_COMConfig(uint8_t Conf);
@@ -106,14 +111,13 @@ static uint16_t VCP_Ctrl (uint32_t Cmd, uint8_t* Buf, uint32_t Len)
   * @param  Len: Number of data to be sent (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else VCP_FAIL
   */
-static uint16_t VCP_DataTx (uint8_t* Buf, uint32_t Len)
+uint16_t VCP_DataTx (uint8_t* Buf, uint32_t Len)
 {
   for (uint32_t byte = 0; byte < Len; byte++) {
     APP_Rx_Buffer[APP_Rx_ptr_in++] = Buf[byte];
-
     if(APP_Rx_ptr_in == APP_RX_DATA_SIZE)
     {
-      break;
+      APP_Rx_ptr_in = 0;
     }
   }
 
@@ -139,9 +143,10 @@ static uint16_t VCP_DataRx (uint8_t* Buf, uint32_t Len)
 
   for (i = 0; i < Len; i++)
   {
-
+    fifoPush(&rxFifo, Buf[i]);
   }
 
+  // Echo
   VCP_DataTx(Buf, Len);
 
   return USBD_OK;

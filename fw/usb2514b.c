@@ -42,7 +42,8 @@ uint32_t usb2514b_init() {
 		__NOP();
 	}
 
-	printf("wake up hub\n");
+	fprintf(stderr, "wake up hub\n");
+
 	// Wake up the hub!
 	GPIO_SetBits(_HUB_RST_N_PORT, (1 << _HUB_RST_N_PIN));
 
@@ -50,7 +51,7 @@ uint32_t usb2514b_init() {
 		__NOP();
 	}
 
-	printf("Write hub config\n"); // 32 bytes at a time...
+	fprintf(stderr, "Write hub config\n"); // 32 bytes at a time...
 
 	int32_t rval;
     for(uint32_t byte = 0; byte < sizeof(hub_cfg); byte += 32) {
@@ -61,7 +62,7 @@ uint32_t usb2514b_init() {
         rval = i2c(I2C1, (0x2C << 1), sizeof(cpy_buff), (uint8_t *)cpy_buff, 0, NULL);
 
         if(rval != 0) {
-        	printf("Error writing hub config %ld\n", rval);
+        	fprintf(stderr, "Error writing hub config %ld\n", rval);
         	break;
         }
     }

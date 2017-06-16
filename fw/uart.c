@@ -4,13 +4,17 @@
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
 #include "stm32f0xx_usart.h"
+#include <stdio.h>
 
 #define FIFO_BUFF_SIZE  (4096)
 
 fifo_t txFifo;
 fifo_t rxFifo;
+
 static uint8_t outBuff[FIFO_BUFF_SIZE];
 static uint8_t inBuff[FIFO_BUFF_SIZE];
+
+extern uint16_t VCP_DataTx (uint8_t* Buf, uint32_t Len);
 
 uint32_t uart_init() {
 	USART_InitTypeDef uartConfig;
@@ -59,9 +63,13 @@ int uartPutchar(USART_TypeDef *uart, fifo_t *fifo, char c) {
 //
 int _write (int fd, char *ptr, int len)
 {
-	//
-	// If planning on supporting both serial and usb-serial, check fd here!
-	//
+	// Stderr only goes to uart, not USB CDC
+	if(fd != 2) {
+		VCP_DataTx((uint8_t *)ptr, len);
+	}
+
+	// TODO - Figure out why stderr only prints one character...
+
 	while(len--) {
 		uartPutchar(USART3, &txFifo, *ptr++);
 	}
