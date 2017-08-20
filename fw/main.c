@@ -46,6 +46,8 @@ int main(void) {
 
 	uart_init();
 
+	fprintf(stderr, "Starting Test Hub %s\n", FW_VERSION);
+
 	USBD_Init(&USB_Device_dev,
 			&USR_desc,
 			&USBD_CDC_cb,

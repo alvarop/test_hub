@@ -64,15 +64,16 @@ int uartPutchar(USART_TypeDef *uart, fifo_t *fifo, char c) {
 int _write (int fd, char *ptr, int len)
 {
 	// Stderr only goes to uart, not USB CDC
+	// Stderr is #2
 	if(fd != 2) {
 		VCP_DataTx((uint8_t *)ptr, len);
 	}
 
-	// TODO - Figure out why stderr only prints one character...
-
-	while(len--) {
+	// Print everything to stderr for now
+	for(uint32_t byte =0; byte < len; byte++) {
 		uartPutchar(USART3, &txFifo, *ptr++);
 	}
+
 	return len;
 }
 
@@ -85,6 +86,7 @@ int _read (int fd, char *ptr, int len)
   //
   while(fifoSize(&rxFifo) && len--) {
     *ptr++ = fifoPop(&rxFifo);
+    readChars++;
   }
 
   return readChars;
