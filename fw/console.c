@@ -7,7 +7,6 @@
 #include "board.h"
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
-#include "adc.h"
 
 typedef struct {
 	char *commandStr;
@@ -27,7 +26,6 @@ static void helpFn(uint8_t argc, char *argv[]);
 static void snCmd(uint8_t argc, char *argv[]);
 static void versionCmd(uint8_t argc, char *argv[]);
 static void portCmd(uint8_t argc, char *argv[]);
-// static void adcCmd(uint8_t argc, char *argv[]);
 
 static const char versionStr[] = FW_VERSION;
 
@@ -35,7 +33,6 @@ static command_t commands[] = {
 	{"sn", snCmd, "sn"},
 	{"version", versionCmd, "version"},
 	{"port", portCmd, "port <1-3> <0|1> - Enable/disable port"},
-	// {"adc", adcCmd, "adc <1-4> - Read adc channel"},
 	// Add new commands here!
 	{"help", helpFn, "Print this!"},
 	{NULL, NULL, NULL}
@@ -116,23 +113,6 @@ static void portCmd(uint8_t argc, char *argv[]) {
 		printf("ERR\n");
 	}
 }
-
-// static void adcCmd(uint8_t argc, char *argv[]) {
-// 	if (argc == 2) {
-// 		uint8_t ch = (uint8_t)strtoul(argv[1], NULL, 10);
-
-// 		adc_read_single(ch); // Dummy read
-// 		// TODO: Fix this ^ ^ ^
-
-// 		int32_t adcval = adc_read_single(ch);
-// 		// adcval = (adcval * 100 * 330) / 409600;
-
-// 		// printf("OK %ld.%02ld\n", adcval / 100, (adcval - (adcval/100) * 100));
-// 		printf("OK %ld\n", adcval);
-// 	} else {
-// 		printf("ERR\n");
-// 	}
-// }
 
 void consoleProcess() {
 	uint32_t inBytes = fifoSize(&rxFifo);
