@@ -88,4 +88,4 @@
 #define _SDA_PORT GPIOB
 #define _SDA_PIN 7
 
-#endif // __PINS_H__
+#endif  // __PINS_H__
