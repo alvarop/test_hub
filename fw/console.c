@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "board.h"
+#include "dfu.h"
 #include "fifo.h"
 #include "stm32f0xx.h"
 #include "stm32f0xx_conf.h"
@@ -26,6 +27,9 @@ static void helpFn(uint8_t argc, char *argv[]);
 static void snCmd(uint8_t argc, char *argv[]);
 static void versionCmd(uint8_t argc, char *argv[]);
 static void portCmd(uint8_t argc, char *argv[]);
+static void ResetCmd(uint8_t argc, char *argv[]);
+static void DfuCmd(uint8_t argc, char *argv[]);
+
 
 static const char versionStr[] = FW_VERSION;
 
@@ -33,6 +37,8 @@ static command_t commands[] = {
     {"sn", snCmd, "sn"},
     {"version", versionCmd, "version"},
     {"port", portCmd, "port <1-3> <0|1> - Enable/disable port"},
+    {"reset", ResetCmd, "System reset"},
+    {"dfu", DfuCmd, "Switch to USB DFU bootloader"},
     // Add new commands here!
     {"help", helpFn, "Print this!"},
     {NULL, NULL, NULL}};
@@ -109,6 +115,13 @@ static void portCmd(uint8_t argc, char *argv[]) {
   } else {
     printf("ERR\n");
   }
+}
+
+static void ResetCmd(uint8_t argc, char *argv[]) { NVIC_SystemReset(); }
+
+static void DfuCmd(uint8_t argc, char *argv[]) {
+  printf("OK\n");
+  EnterDfu();
 }
 
 void consoleProcess() {

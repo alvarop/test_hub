@@ -8,6 +8,7 @@ SRCS = 		main.c \
 			usb2514b.c \
 			usb2514b_config.c \
 			uart.c \
+			dfu.c \
 
 # System sources
 SRCS += 	system_stm32f0xx.c \
@@ -86,6 +87,9 @@ INCLUDE_PATHS += -I$(BASEDIR)/usb
 OBJS = $(SRCS:.c=.o)
 OBJS += $(USB_SRCS:.c=.o)
 OBJS += $(S_SRCS:.s=.o)
+
+# Make sure needed directories are there
+_dummy := $(shell mkdir -p build/usb)
 
 ###################################################
 
