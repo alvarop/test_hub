@@ -9,6 +9,7 @@
 #include "usb2514b.h"
 #include "usbd_cdc_core.h"
 #include "usbd_usr.h"
+#include "adc.h"
 
 #define BLINK_DELAY_MS (500)
 
@@ -54,6 +55,8 @@ int main(void) {
   gpio_init();
 
   uart_init();
+
+  adc_init();
 
   fprintf(stderr, "Starting Test Hub %s\n", FW_VERSION);
 

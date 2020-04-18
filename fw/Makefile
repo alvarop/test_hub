@@ -9,6 +9,7 @@ SRCS = 		main.c \
 			usb2514b_config.c \
 			uart.c \
 			dfu.c \
+			adc.c \
 
 # System sources
 SRCS += 	system_stm32f0xx.c \
